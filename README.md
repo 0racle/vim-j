@@ -12,7 +12,8 @@ Highlight groups for
 
   * Types of speech (verb, adverb, conjunction)
   * Special args in functions (x, y, m, n, u, v)
-  * Rank numbers (different from numericsz)
+  * Rank numbers (different from numerics)
+  * Unpacking assignment ('a b' =. y) (not highlighted as a string)
   * and more...
 
 EXAMPLE
