@@ -6,7 +6,7 @@ syn sync clear
 syn sync fromstart
 
 " Identifiers:
-syn match jIdentifier /\v<[a-zA-Z][a-zA-Z0-9]*>/
+syn match jIdentifier /\v<[a-zA-Z][a-zA-Z0-9_]*>/
 
 " Arguments:
 syn match jNounArg contained /\v<[mnxy]>/
@@ -94,8 +94,8 @@ syn region jQuoteStrN extend keepend oneline matchgroup=jPreProc start=/''/ end=
 syn region jQuoteStrNN extend keepend oneline matchgroup=jPreProc start=/''''/ end=/''''/ contained
 
 " Unpacking:
-syn region jUnpack  oneline matchgroup=jPreProc start=/\v\'/ end=/\v\'\s*\=[.:]/ contains=jIdentifier,jConjunction
-syn region jUnpackN oneline matchgroup=jPreProc start=/\v\'/ end=/\v\'\s*\=[.:]/ contains=jIdentifier,jConjunction,@jArgument contained
+syn match jQuote /'/ contained
+syn match jUnpack /\v'(\s*<[a-zA-Z][a-zA-Z0-9_]*>)+\s*'\s*\=[.:]/ contains=jQuote,jCopula
 
 " Comments:
 syn match jComment /\v(NB\.)[.:]@!.*$/
@@ -167,7 +167,8 @@ hi def link jForeignAdverb  Type
 hi def link jNumType        Type
 hi def link jConjunction    Identifier
 hi def link jControl        Delimiter
-hi def link jCopula         PreProc
+hi def link jCopula         Structure
+hi def link jQuote          PreProc
 hi def link jParens         PreProc
 hi def link jPreProc        PreProc
 hi def link jShebang        PreProc
