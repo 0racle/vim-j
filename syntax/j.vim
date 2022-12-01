@@ -13,6 +13,12 @@ syn match jNounArg contained /\v<[mnxy]>/
 syn match jVerbArg contained /\v<[uv]>/
 syn cluster jArgument contains=jNounArg,jVerbArg
 
+" Inf_and_Nan:
+syn match jNoun        /\v<_[\d_]@!/            " Inf
+syn match jNumeral     /\v<__>/ contains=jNoun  " Neg Inf Sign
+syn match jNoun        /\v_@<=_/ contained      " Neg Inf
+syn match jNoun        /\v<_\./                 " NaN
+
 " Numerals:
 syn match jNumType contained /\v(a[rd]|[Ebejprx])/
 syn match jNumType contained /\vb([0-9a-z])@=/ nextgroup=jNumBased
@@ -20,8 +26,6 @@ syn match jNumeral contains=jNumType /\v<_?\d+[_\.0-9Ea-z]*/
 syn match jNumBased contained /\v[0-9a-z]+>/
 
 " Parts_of_Speech:
-syn match jNoun        /\v<_\d@!/
-syn match jNoun        /\v<_\./
 syn match jAdverb      /\v\~/
 syn match jAdverb      /\v\/\.?/
 syn match jAdverb      /\v(\})@<!\}\}@!/  " single `}`
@@ -105,7 +109,7 @@ syn match jNounLiteral /.*/ contained
 syn cluster jStuff contains=jAdverb,jVerb,jConjunction,jNoun,jCopula,jNumeral,jForeign,jComment,jControl,jStdNoun,jPreProc,jIdentifier
 
 " Direct Defs:
-syn region jDirectDef extend keepend matchgroup=jControl start=/{{/ end=/}}/ contains=@jStuff,jUnpack,jQuoteStr,jParens,jQuoteEscape,@jArgument,jDirectDef,jUnpackN,jDirectDefID
+syn region jDirectDef extend matchgroup=jControl start=/{{/ end=/}}/ contains=@jStuff,jUnpack,jQuoteStr,jParens,jQuoteEscape,@jArgument,jDirectDef,jUnpackN,jDirectDefID
 
 syn region jDirectDefNoun extend keepend matchgroup=jControl start=/{{\ze)n/ end=/^}}/ contains=jNounLiteral,jDirectDefID
 
