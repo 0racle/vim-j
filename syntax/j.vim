@@ -27,7 +27,7 @@ syn match jNumBased contained /\v[0-9a-z]+>/
 
 " Parts_of_Speech:
 syn match jAdverb      /\v\~/
-syn match jAdverb      /\v\/\.?/
+syn match jAdverb      /\v\/(\.\.?)?/
 syn match jAdverb      /\v(\})@<!\}\}@!/  " single `}`
 syn match jAdverb      /\v<[bfM]\./
 syn match jVerb        /\v[;=!]/
@@ -71,7 +71,7 @@ syn match jConjunction /\v[\[\]]\./
 syn match jNoun        /\v<a[.:]/
 syn match jAdverb      /\v\\\.?/
 syn match jVerb        /\v\\:/
-syn match jVerb        /\v_:/
+syn match jVerb        /\v__?:/
 
 " Control:
 syn match jControl contained /\v<(assert|break|case|catch|catchd)\./
