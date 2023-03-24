@@ -51,11 +51,11 @@ syn match jConjunction /\.$/
 syn match jConjunction /\.\ze[^0-9]/
 syn match jConjunction /\.[.:]/
 syn match jConjunction /"\ze[^.:A-Za-z]/
-syn match jConjunction /\v"(\s*(_?\d?)){0,3}/ contains=jNoun,jRankAdverb
-syn match jRankAdverb  /\v_?\d*/ contained
+syn match jConjunction /\v"(\s*(_?(\dx?)?)){0,3}/ contains=jNoun,jRankAdverb
+syn match jRankAdverb  /\v_?(\dx?)*/ contained
 syn match jVerb        /\v"[.:]/
 syn match jConjunction /\v;\.\s*(_?\d+)?/ contains=jCutAdverb,jCutError
-syn match jCutAdverb   /\v_?[0123]/ contained
+syn match jCutAdverb   /\v_?[0123]x?/ contained
 syn match jCutError    /\v_?(\d\d+|[4-9])/ contained
 syn match jConjunction /\v\^:/
 syn match jConjunction /\v:[.:]?/
@@ -100,6 +100,7 @@ syn region jQuoteStrNN extend keepend oneline matchgroup=jPreProc start=/''''/ e
 " Unpacking:
 syn match jQuote /'/ contained
 syn match jUnpack /\v'(\s*<[a-zA-Z][a-zA-Z0-9_]*>)+\s*'\s*\=[.:]/ contains=jQuote,jCopula
+syn match jUnpackN /\v'(\s*<[a-zA-Z][a-zA-Z0-9_]*>)+\s*'\s*\=[.:]/ contained contains=jQuote,jCopula,@jArgument
 
 " Comments:
 syn match jComment /\v(NB\.)[.:]@!.*$/
@@ -109,7 +110,7 @@ syn match jNounLiteral /.*/ contained
 syn cluster jStuff contains=jAdverb,jVerb,jConjunction,jNoun,jCopula,jNumeral,jForeign,jComment,jControl,jStdNoun,jPreProc,jIdentifier
 
 " Direct Defs:
-syn region jDirectDef extend matchgroup=jControl start=/{{/ end=/}}/ contains=@jStuff,jUnpack,jQuoteStr,jParens,jQuoteEscape,@jArgument,jDirectDef,jUnpackN,jDirectDefID
+syn region jDirectDef extend matchgroup=jControl start=/{{/ end=/}}/ contains=@jStuff,jUnpackN,jQuoteStr,jParens,jQuoteEscape,@jArgument,jDirectDef,jDirectDefID
 
 syn region jDirectDefNoun extend keepend matchgroup=jControl start=/{{\ze)n/ end=/^}}/ contains=jNounLiteral,jDirectDefID
 
