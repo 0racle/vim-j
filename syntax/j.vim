@@ -99,8 +99,8 @@ syn region jQuoteStrNN extend keepend oneline matchgroup=jPreProc start=/''''/ e
 
 " Unpacking:
 syn match jQuote /'/ contained
-syn match jUnpack /\v'(\s*<[a-zA-Z][a-zA-Z0-9_]*>)+\s*'\s*\=[.:]/ contains=jQuote,jCopula
-syn match jUnpackN /\v'(\s*<[a-zA-Z][a-zA-Z0-9_]*>)+\s*'\s*\=[.:]/ contained contains=jQuote,jCopula,@jArgument
+syn match jUnpack /\v'(`?\s*<[a-zA-Z][a-zA-Z0-9_]*>)+\s*'\s*\=[.:]/ contains=jQuote,jCopula,jConjunction
+syn match jUnpackN /\v'(`?\s*<[a-zA-Z][a-zA-Z0-9_]*>)+\s*'\s*\=[.:]/ contained contains=jQuote,jCopula,jConjunction,@jArgument
 
 " Comments:
 syn match jComment /\v(NB\.)[.:]@!.*$/
