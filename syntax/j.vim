@@ -42,7 +42,7 @@ syn match jVerb        /\v\]/
 syn match jVerb        /\v\{::/
 syn match jVerb        /\v\?\.?/
 syn match jVerb        /\v<[AcCeEiIjLoprT]\./
-syn match jVerb        /\v<[ipqsuxLZ]:/
+syn match jVerb        /\v<[ipqsuxZ]:/
 syn match jVerb        /\v<p\.\./
 syn match jVerb        /\v_?[0-9]:/
 syn match jAdverb      /\v\]:/
@@ -64,7 +64,7 @@ syn match jConjunction /\v`[:]?/
 syn match jConjunction /\v\@[.:]?/
 syn match jConjunction /\v\&[.:]?/
 syn match jConjunction /\v\&\.:/
-syn match jConjunction /\v<[dtDH]\./
+syn match jConjunction /\v<[dtmDH]\./
 syn match jConjunction /\v<[DLS]\:/
 syn match jConjunction /\v<F[.:][.:]?/
 syn match jConjunction /\v[\[\]]\./
