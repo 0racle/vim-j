@@ -16,9 +16,20 @@ Highlight groups for
   * Unpacking assignment ('a b' =. y) (not highlighted as a string)
   * and more...
 
-EXAMPLE
+RELATED
 =======
 
-Example screenshot using the [jellybeans](https://github.com/nanotech/jellybeans.vim) colorscheme.
+See also
 
-![screenshot](screenshot.png)
+  * My [J language plugin for highlight.js](https://github.com/0racle/highlightjs-j/tree/master)
+
+SCREENSHOTS
+===========
+
+Example screenshots using the [jellybeans](https://github.com/nanotech/jellybeans.vim) colorscheme.
+
+![code example](screenshots/01-code-example.png)
+![parts of speech](screenshots/02-parts-of-speech.png)
+![numbers and params](screenshots/03-numbers-and-params.png)
+![unpacking and strings](screenshots/04-unpacking-and-strings.png)
+![controls and verbs](screenshots/05-controls-and-verbs.png)
