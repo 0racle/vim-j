@@ -21,7 +21,7 @@ RELATED
 
 See also
 
-  * My [J language plugin for highlight.js](https://github.com/0racle/highlightjs-j/tree/master)
+  * My [J language plugin for highlight.js](https://github.com/0racle/highlightjs-j)
 
 SCREENSHOTS
 ===========
