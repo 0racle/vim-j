@@ -51,8 +51,8 @@ syn match jConjunction /\.$/
 syn match jConjunction /\.\ze[^0-9]/
 syn match jConjunction /\.[.:]/
 syn match jConjunction /"\ze[^.:A-Za-z]/
-syn match jConjunction /\v"(\s*(_?(\dx?)?)){0,3}/ contains=jNoun,jRankAdverb
-syn match jRankAdverb  /\v_?(\dx?)*/ contained
+syn match jConjunction /\v"(\s*(_?(\d:@!x?)?)){0,3}/ contains=jNoun,jRankAdverb
+syn match jRankAdverb  /\v_?(\d:@!x?)*/ contained
 syn match jVerb        /\v"[.:]/
 syn match jConjunction /\v;\.\s*(_?\d+)?/ contains=jCutAdverb,jCutError
 syn match jCutAdverb   /\v_?[0123]x?/ contained
