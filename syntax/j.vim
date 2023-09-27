@@ -110,7 +110,7 @@ syn match jNounLiteral /.*/ contained
 syn cluster jStuff contains=jAdverb,jVerb,jConjunction,jNoun,jCopula,jNumeral,jForeign,jComment,jControl,jStdNoun,jPreProc,jIdentifier
 
 " Direct Defs:
-syn region jDirectDef extend matchgroup=jControl start=/{{/ end=/}}/ contains=@jStuff,jUnpackN,jQuoteStr,jParens,jQuoteEscape,@jArgument,jDirectDef,jDirectDefID
+syn region jDirectDef extend matchgroup=jControl start=/{{/ end=/}}/ contains=@jStuff,jUnpackN,jQuoteStr,jParens,jQuoteEscape,@jArgument,jDirectDef,jDirectDefID,jDirectDefNoun
 
 syn region jDirectDefNoun extend keepend matchgroup=jControl start=/{{\ze)n/ end=/^}}/ contains=jNounLiteral,jDirectDefID
 
