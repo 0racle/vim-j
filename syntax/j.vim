@@ -65,7 +65,8 @@ syn match jConjunction /\v\@[.:]?/
 syn match jConjunction /\v\&[.:]?/
 syn match jConjunction /\v\&\.:/
 syn match jConjunction /\v<[dtmDH]\./
-syn match jConjunction /\v<[DLS]\:/
+syn match jConjunction /\v<D\:/
+syn match jConjunction /\v<[LS]\:(\s*(_?(\d:@!x?)?)){0,3}/ contains=jNoun,jRankAdverb
 syn match jConjunction /\v<F[.:][.:]?/
 syn match jConjunction /\v[\[\]]\./
 syn match jNoun        /\v<a[.:]/
@@ -132,7 +133,7 @@ syn region jVerbDefN contains=@jStuff,jQuoteStrNN,jParens,jQuoteEscape,@jArgumen
 " Noun Defs:
 syn region jNounDef contains=jNounLiteral matchgroup=jDefDelims start=/\v(\(+\s*)*(noun|0)\)*\s+(\(*define\)*|(def|:)\s*\(*0\)*)/ end=/^)/
 
-syn region jNounDef contains=jNounLiteral matchgroup=jDefDelims start=/\vNote\ze\s+\S/ end=/^)/
+syn region jNoteDef matchgroup=jDefDelims start=/\vNote\ze\s+\S/ end=/^)/
 
 " Shebang:
 syn match jShebang /\%^\s*#!.*$/
@@ -155,6 +156,7 @@ syn keyword jPreProc conounsx copath copathnl copathnlx coreset costate
 hi def link jIdentifier     Bleached
 hi def link jControlLabel   Bleached
 hi def link jComment        Comment
+hi def link jNoteDef        Structure
 hi def link jNumeral        Number
 hi def link jNumBased       Number
 hi def link jQuoteStr       String
