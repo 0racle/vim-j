@@ -56,7 +56,7 @@ syn match jRankAdverb  /\v_?(\d:@!x?)*/ contained
 syn match jVerb        /\v"[.:]/
 syn match jConjunction /\v;\.\s*(_?\d+)?/ contains=jCutAdverb,jCutError
 syn match jCutAdverb   /\v_?[0123]x?/ contained
-syn match jCutError    /\v_?(\d\d+|[4-9])/ contained
+syn match jCutError    /\v_?(\d\d+|[4-9]|\d+(\s+_?\d+){1,2})/ contained
 syn match jConjunction /\v\^:/
 syn match jConjunction /\v:[.:]?/
 syn match jConjunction /\v![.:]{1}/
