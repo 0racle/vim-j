@@ -133,7 +133,7 @@ syn region jVerbDefN contains=@jStuff,jQuoteStrNN,jParens,jQuoteEscape,@jArgumen
 " Noun Defs:
 syn region jNounDef contains=jNounLiteral matchgroup=jDefDelims start=/\v(\(+\s*)*(noun|0)\)*\s+(\(*define\)*|(def|:)\s*\(*0\)*)/ end=/^)/
 
-syn region jNoteDef matchgroup=jDefDelims start=/\vNote\ze\s+\S/ end=/^)/
+syn region jNoteDef matchgroup=jDefDelims start=/\vNote\ze\s*\S/ end=/^)/
 
 " Shebang:
 syn match jShebang /\%^\s*#!.*$/
