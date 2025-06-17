@@ -7,6 +7,7 @@ syn sync fromstart
 
 " Identifiers:
 syn match jIdentifier /\v<[a-zA-Z][a-zA-Z0-9_]*>/
+syn match jIdentError /\v<[a-zA-Z][a-zA-Z0-9_]*\./
 
 " Arguments:
 syn match jNounArg contained /\v<[mnxy]>/
@@ -108,37 +109,37 @@ syn match jComment /\v(NB\.)[.:]@!.*$/
 
 syn match jNounLiteral /.*/ contained
 
-syn cluster jStuff contains=jAdverb,jVerb,jConjunction,jNoun,jCopula,jNumeral,jForeign,jComment,jControl,jStdNoun,jPreProc,jIdentifier
+syn cluster jStuff contains=jAdverb,jVerb,jConjunction,jNoun,jCopula,jNumeral,jForeign,jComment,jControl,jStdNoun,jPreProc,jIdentifier,jIdentError
 
 " Direct Defs:
-syn region jDirectDef extend matchgroup=jControl start=/{{/ end=/}}/ contains=@jStuff,jUnpackN,jQuoteStr,jParens,jQuoteEscape,@jArgument,jDirectDef,jDirectDefID,jDirectDefNoun
+syn region jDirectDef extend matchgroup=jControl start=/{{/ end=/}}/ contains=@jStuff,jUnpackN,jQuoteStr,jParens,jQuoteEscape,@jArgument,jDirectDef,jDirectDefID,jDirectDefNoun fold
 
-syn region jDirectDefNoun extend keepend matchgroup=jControl start=/{{\ze)n/ end=/^}}/ contains=jNounLiteral,jDirectDefID
+syn region jDirectDefNoun extend keepend matchgroup=jControl start=/{{\ze)n/ end=/^}}/ contains=jNounLiteral,jDirectDefID fold
 
-syn region jDirectDefNoun extend keepend oneline matchgroup=jControl start=/{{\ze)n/ end=/}}/ contains=jNounLiteral,jDirectDefID
+syn region jDirectDefNoun extend keepend oneline matchgroup=jControl start=/{{\ze)n/ end=/}}/ contains=jNounLiteral,jDirectDefID fold
 
 syn match jDirectDefID /\({{\)\@<=)[mdvacn*]/ contained
 
 " Verb Defs:
 syn region jQuoteVerb oneline matchgroup=jDefDelims start=/'/ end=/'/ skip=/''/ contained contains=@jStuff,jParens,jQuoteEscape,@jArgument,jUnpackN,jQuoteStr
 
-syn region jVerbDef oneline matchgroup=jDefDelims start=/\v(noun|adverb|conjunction|verb|monad|dyad|[1-4]|13)\s+(def|:)\s*'/ end=/'/ skip=/''/ contains=@jStuff,jQuoteStrN,jParens,jQuoteEscape,@jArgument,jVerbDefN
+syn region jVerbDef oneline matchgroup=jDefDelims start=/\v(noun|adverb|conjunction|verb|monad|dyad|[1-4]|13)\s+(def|:)\s*'/ end=/'/ skip=/''/ contains=@jStuff,jQuoteStrN,jParens,jQuoteEscape,@jArgument,jVerbDefN fold
 
-syn region jVerbDef matchgroup=jDefDelims start=/\v(noun|adverb|conjunction|verb|monad|dyad|[1-4]|13)\s+(def|:)\s*\(/ end=/\v\)/ contains=jQuoteVerb,@jStuff
+syn region jVerbDef matchgroup=jDefDelims start=/\v(noun|adverb|conjunction|verb|monad|dyad|[1-4]|13)\s+(def|:)\s*\(/ end=/\v\)/ contains=jQuoteVerb,@jStuff fold
 
-syn region jExplicitDef matchgroup=jDefDelims start=/\v(\(+\s*)*(noun|adverb|conjunction|verb|monad|dyad|[1-4]|13)\)*\s+(\(*define\)*|(def|:)\s*\(*0\)*)/ end=/^)/ contains=@jStuff,jQuoteStr,jParens,jQuoteEscape,@jArgument,jUnpackN
+syn region jExplicitDef matchgroup=jDefDelims start=/\v(\(+\s*)*(noun|adverb|conjunction|verb|monad|dyad|[1-4]|13)\)*\s+(\(*define\)*|(def|:)\s*\(*0\)*)/ end=/^)/ contains=@jStuff,jQuoteStr,jParens,jQuoteEscape,@jArgument,jUnpackN fold
 
-syn region jVerbDefN contains=@jStuff,jQuoteStrNN,jParens,jQuoteEscape,@jArgument oneline matchgroup=jDefDelims start=/\v(\(+\s*)*(noun|adverb|conjunction|verb|monad|dyad|[1-4]|13)\)*\s+(def|:)\s*\(?''/ end=/'')\=/ skip=/''''/ contained
+syn region jVerbDefN contains=@jStuff,jQuoteStrNN,jParens,jQuoteEscape,@jArgument oneline matchgroup=jDefDelims start=/\v(\(+\s*)*(noun|adverb|conjunction|verb|monad|dyad|[1-4]|13)\)*\s+(def|:)\s*\(?''/ end=/'')\=/ skip=/''''/ contained fold
 
 " Noun Defs:
-syn region jNounDef contains=jNounLiteral matchgroup=jDefDelims start=/\v(\(+\s*)*(noun|0)\)*\s+(\(*define\)*|(def|:)\s*\(*0\)*)/ end=/^)/
+syn region jNounDef contains=jNounLiteral matchgroup=jDefDelims start=/\v(\(+\s*)*(noun|0)\)*\s+(\(*define\)*|(def|:)\s*\(*0\)*)/ end=/^)/ fold
 
-syn region jNoteDef matchgroup=jDefDelims start=/\vNote\ze\s*\S/ end=/^)/
+syn region jNoteDef matchgroup=jDefDelims start=/\vNote\ze\s*\S/ end=/^)/ fold
 
 " Shebang:
 syn match jShebang /\%^\s*#!.*$/
 
-" StdVerbs:
+" StdNouns:
 syn keyword jStdNoun ARGV BINPATH CR CRLF DEL Debug EAV EMPTY Endian
 syn keyword jStdNoun FF FHS IF64 IFBE IFIOS IFJA IFJHS IFJNET IFQT
 syn keyword jStdNoun IFRASPI IFUNIX IFWIN IFWINCE IFWINE IFWOW64
@@ -146,7 +147,7 @@ syn keyword jStdNoun JB01 JBOXED JCHAR JCHAR2 JCHAR4 JCMPX JFL JINT
 syn keyword jStdNoun JLIB JPTR JSB JSIZES JSTR JSTR2 JSTR4 JTYPES JVERSION
 syn keyword jStdNoun LF LF2 LIBFILE SZI TAB UNAME UNXLIB
 
-" StdNouns:
+" StdVerbs:
 syn keyword jPreProc load require 
 syn keyword jPreProc coclass cocreate cocurrent codestroy coerase cofind cofindv 
 syn keyword jPreProc cofullname coinfo coinsert coname conames conew conl conouns 
@@ -184,6 +185,7 @@ hi def link jVerbArg        Statement
 hi def link jDefDelims      Underlined
 hi def link jDirectDefID    Underlined
 hi def link jCutError       Error
+hi def link jIdentError     Error
 
 let b:current_syntax = "j"
 let &cpo = s:save_cpo
