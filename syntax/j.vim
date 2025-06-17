@@ -80,7 +80,7 @@ syn match jControl contained /\v<(assert|break|case|catch|catchd)\./
 syn match jControl contained /\v<(catcht|continue|do|else|elseif)\./
 syn match jControl contained /\v<(end|fcase|if|return|select)\./
 syn match jControl contained /\v<(throw|trap|try|while|whilst)\./
-syn match jControl contained /\v<(for|goto|label)(_\w+)?\./ contains=jControlLabel
+syn match jControl contained /\v<(for|goto|label)(_[a-z]\w*)?\./ contains=jControlLabel
 syn match jControlLabel contained /\v_\zs\w+/
 
 " Parens:
